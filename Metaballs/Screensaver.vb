@@ -8,13 +8,11 @@ Public Class Screensaver
 
     Private time As Double
 
+    Private Const waveHeight As Single = 2.1
+
     Private metaballsShader As Shader
     Private screenQuadRenderer As ScreenQuadRenderer
-
-    ' Randomises the zoom point the screensaver starts on
-    Private zoomPointSeed As Integer
-
-    Private Const NUM_FRACTAL_ZOOM_POINTS As Integer = 5
+    Private dropletManager As DropletManager
 
     Public Sub New()
         MyBase.New(DisplayDevice.Default.Width, DisplayDevice.Default.Height,
@@ -27,7 +25,6 @@ Public Class Screensaver
         prevMouseX = 0
         prevMouseY = 0
         time = 0
-        zoomPointSeed = New Random().Next() Mod NUM_FRACTAL_ZOOM_POINTS
     End Sub
 
     Protected Overrides Sub OnLoad(e As EventArgs)
@@ -37,6 +34,7 @@ Public Class Screensaver
 
         metaballsShader = New Shader("metaballs.vert", "metaballs.frag")
         screenQuadRenderer = New ScreenQuadRenderer()
+        dropletManager = New DropletManager(30, New Vector3(0.0, 60.0, 40.0), 50.0, 60.0, 40.0, time)
     End Sub
 
     Protected Overrides Sub OnResize(e As EventArgs)
@@ -80,7 +78,10 @@ Public Class Screensaver
 
         metaballsShader.SetVec3("iResolution", resolution)
         metaballsShader.SetFloat("iTime", time)
+        metaballsShader.SetFloat("waveHeight", waveHeight)
 
+        dropletManager.ApplyGravity(time, waveHeight)
+        dropletManager.SendDataToShader(metaballsShader)
 
         screenQuadRenderer.Render()
 

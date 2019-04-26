@@ -50,6 +50,21 @@ Public MustInherit Class ShaderBase
         GL.UniformMatrix4(GL.GetUniformLocation(shaderID, name), transpose, m)
     End Sub
 
+    Public Sub SetFloatArray(name As String, count As Integer, array As Single())
+        GL.Uniform1(GL.GetUniformLocation(shaderID, name), count, array)
+    End Sub
+
+    Public Sub SetVec3Array(name As String, count As Integer, array As Vector3())
+        Dim values(array.Count() * 3) As Single
+        For i = 0 To array.Count() - 1
+            values(i * 3 + 0) = array(i).X
+            values(i * 3 + 1) = array(i).Y
+            values(i * 3 + 2) = array(i).Z
+        Next
+
+        GL.Uniform3(GL.GetUniformLocation(shaderID, name), count, values)
+    End Sub
+
     ' Exports shader into string for reading
     Protected Function ExportResource(ByRef assembly As Assembly, ByVal assemblyNamespace As String, ByVal mediaFile As String) As String
         Dim fullFileName As String = assemblyNamespace + "." + mediaFile
