@@ -190,7 +190,7 @@ vec3 atmosphere(vec3 r, vec3 r0, vec3 pSun, float iSun, float rPlanet, float rAt
 }
 
 float sun(vec3 ray, vec3 sunPos) {
- 	vec3 sd = -normalize(sunPos);
+ 	vec3 sd = normalize(sunPos);
     return pow(max(0.0, dot(ray, sd)), 528.0) * 110.0;
 }
 
@@ -291,7 +291,7 @@ void main() {
 
 	vec3 C;
 	float slowedTime = iTime * 0.25;
-	vec3 sunPos = normalize(vec3(0.0, 0.25, 1.0));  
+	vec3 sunPos = normalize(vec3(cos(mod(slowedTime, M_PI)), sin(mod(slowedTime, M_PI)) * 0.85, -1.0));  
 	
 	float dist = raymarch(orig, ray);
 	if (dist == -1.0) {
