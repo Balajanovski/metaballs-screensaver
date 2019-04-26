@@ -61,7 +61,7 @@ Public Class DropletManager
             ' Apply kinematics equation: v = u + at
             droplets(i).velocity += (GRAVITY * t)
 
-            If (droplets(i).position.Y > waveHeight) Then
+            If (droplets(i).position.Y > waveHeight + droplets(i).radius * 2) Then
                 droplets(i).velocity = 0.0
 
                 Dim x As Single = Math.Abs(RandomFloatGenerator.instance().NextFloat() Mod spawnBoxWidth) - (0.5 * spawnBoxWidth) + spawnBoxCentre.X

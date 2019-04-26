@@ -77,11 +77,6 @@ vec3 rayDirection(in float fieldOfView, in vec2 size, in vec2 fragmentCoord) {
     return normalize(vec3(xy, -z));
 }
 
-// Random number generation function
-float rand2sTimex(vec2 co){
-    return fract(sin(dot(co.xy * iTime,vec2(12.9898,78.233))) * 43758.5453);
-}
-
 #define iSteps 16
 #define jSteps 8
 
@@ -100,6 +95,7 @@ vec2 rsi(vec3 r0, vec3 rd, float sr) {
     );
 }
 
+// Atmospheric scattering from: https://github.com/wwwtyro/glsl-atmosphere
 vec3 atmosphere(vec3 r, vec3 r0, vec3 pSun, float iSun, float rPlanet, float rAtmos, vec3 kRlh, float kMie, float shRlh, float shMie, float g) {
     // Normalize the sun and view directions.
     pSun = normalize(pSun);
@@ -291,7 +287,7 @@ void main() {
 
 	vec3 C;
 	float slowedTime = iTime * 0.25;
-	vec3 sunPos = normalize(vec3(cos(mod(slowedTime, M_PI)), sin(mod(slowedTime, M_PI)) * 0.85, -1.0));  
+	vec3 sunPos = normalize(vec3(cos(mod(slowedTime, M_PI)), sin(mod(slowedTime, M_PI)) * 0.35, -1.0));  
 	
 	float dist = raymarch(orig, ray);
 	if (dist == -1.0) {
