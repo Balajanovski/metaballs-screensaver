@@ -10,9 +10,9 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("Metaballs")>
 <Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("HP Inc.")>
+<Assembly: AssemblyCompany("")>
 <Assembly: AssemblyProduct("Metaballs")>
-<Assembly: AssemblyCopyright("Copyright © HP Inc. 2019")>
+<Assembly: AssemblyCopyright("")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>

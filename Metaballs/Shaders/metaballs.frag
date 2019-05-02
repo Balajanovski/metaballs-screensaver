@@ -4,8 +4,6 @@ out vec4 FragColor;
 
 uniform vec3 iResolution;
 uniform float iTime;
-uniform int zoomPointSeed;
-uniform int selectedPalette;
 
 uniform float waveHeight;
 
