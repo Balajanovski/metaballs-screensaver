@@ -290,7 +290,7 @@ void main() {
 	
 	float dist = raymarch(orig, ray);
 	if (dist == -1.0) {
-		vec3 atm = atmosphere(ray, orig + vec3(0,6372e3,0), sunPos, 22.0, 6371e3, 6471e3, vec3(5.5e-6, 13.0e-6, 22.4e-6), 21e-6, 8e3, 1.2e3, 0.758);
+		vec3 atm = atmosphere(ray, orig + vec3(0,6372e3+4000,0), sunPos, 22.0, 6371e3, 6471e3, vec3(5.5e-6, 13.0e-6, 22.4e-6), 21e-6, 8e3, 1.2e3, 0.758);
 		C = atm * 2.0 + sun(ray, sunPos);
 	} else {
 		vec3 normal = estimateNormal(orig + ray * dist);
@@ -299,7 +299,7 @@ void main() {
 		vec3 reflection = reflect(ray, normal);
 		float fresnel = (0.04 + (1.0-0.04)*(pow(1.0 - max(0.0, dot(-normal, ray)), 5.0)));
 		
-		vec3 atm = atmosphere(reflection, orig + (ray * dist) + vec3(0,6372e3,0), sunPos, 22.0, 6371e3, 6471e3, vec3(5.5e-6, 13.0e-6, 22.4e-6), 21e-6, 8e3, 1.2e3, 0.758);
+		vec3 atm = atmosphere(reflection, orig + (ray * dist) + vec3(0,6372e3+4000,0), sunPos, 22.0, 6371e3, 6471e3, vec3(5.5e-6, 13.0e-6, 22.4e-6), 21e-6, 8e3, 1.2e3, 0.758);
 		C = fresnel * atm * 2.0 + fresnel * sun(reflection, sunPos);
 	}
 	

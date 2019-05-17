@@ -14,7 +14,7 @@
     <Grid>
         <Image x:Name="title" HorizontalAlignment="Left" Height="200" Margin="0,0,0,0" VerticalAlignment="Top" Width="800" Source="pack://application:,,,/Resources/SettingsLogo.png" Stretch="Fill"/>
         <Label x:Name="speedLabel" Content="Speed (Value: 0):" HorizontalAlignment="Left" Height="41" Margin="63,384,0,0" VerticalAlignment="Top" Width="235" FontSize="16"/>
-        <Slider x:Name="speedSlider" HorizontalAlignment="Left" Height="30" Margin="338,395,0,0" VerticalAlignment="Top" Width="421" Minimum="-5" Maximum="5" SmallChange="1"/>
+        <Slider x:Name="speedSlider" HorizontalAlignment="Left" Height="30" Margin="338,395,0,0" VerticalAlignment="Top" Width="421" Minimum="-0.5" Maximum="0.5" SmallChange="1"/>
         <Button x:Name="saveButton" Content="Save Settings" HorizontalAlignment="Left" Margin="300,487,0,0" VerticalAlignment="Top" Width="200" Height="39" FontSize="20"/>
         <Label x:Name="waveheightLabel" Content="Waveheight (Value: 2.1):" HorizontalAlignment="Left" Height="41" Margin="63,320,0,0" VerticalAlignment="Top" Width="235" FontSize="16"/>
         <Slider x:Name="waveheightSlider" Value="2.1" HorizontalAlignment="Left" Height="30" Margin="338,331,0,0" VerticalAlignment="Top" Width="421" Maximum="4.2" SmallChange="1"/>
