@@ -20,9 +20,10 @@ uniform float waveHeight;
 #define MAX_DIST 100.0
 #define FOV (M_PI / 2) // In radians
 
-const int NUM_DROPLETS = 30;
-uniform vec3 dropletCenters[NUM_DROPLETS];
-uniform float dropletRadii[NUM_DROPLETS];
+const int MAX_DROPLETS = 40;
+uniform vec3 dropletCenters[MAX_DROPLETS];
+uniform float dropletRadii[MAX_DROPLETS];
+uniform int NUM_DROPLETS;
 
 // Derived from here https://github.com/achlubek/venginenative/blob/master/shaders/include/WaterHeight.glsl 
 float wave(vec2 uv, vec2 emitter, float speed, float phase){
