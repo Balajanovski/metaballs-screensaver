@@ -21,6 +21,7 @@ Public Class ConfigurationWindow
         key.SetValue("waveheight", waveheightSlider.Value)
         key.SetValue("speed", speedSlider.Value)
         key.SetValue("dropletNumber", dropletNumberSlider.Value)
+        key.SetValue("resolutionRatio", CDbl(1.0 / resolutionSlider.Value))
 
         MessageBox.Show("Screensaver Settings Saved Successfully!", "Settings Saved!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1)
     End Sub
@@ -62,5 +63,11 @@ Public Class ConfigurationWindow
         savedSettings = False
 
         waveheightLabel.Content = "Waveheight (Value: " & String.Format("{0:0.00}", waveheightSlider.Value) & "):"
+    End Sub
+
+    Private Sub ResolutionSlider_ValueChanged(sender As Object, e As Windows.RoutedPropertyChangedEventArgs(Of Double)) Handles resolutionSlider.ValueChanged
+        savedSettings = False
+
+        resolutionLabel.Content = "Resolution Ratio (Value: 1:" & String.Format("{0:0}", resolutionSlider.Value) & "):"
     End Sub
 End Class

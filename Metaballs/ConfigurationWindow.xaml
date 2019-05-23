@@ -10,16 +10,18 @@
              ResizeMode="NoResize"
              WindowStartupLocation="CenterScreen"
              Closing="Window_Closing"
-             d:DesignHeight="600" d:DesignWidth="800">
+             d:DesignHeight="700" d:DesignWidth="800">
     <Grid>
         <Image x:Name="title" HorizontalAlignment="Left" Height="200" Margin="0,0,0,0" VerticalAlignment="Top" Width="800" Source="pack://application:,,,/Resources/SettingsLogo.png" Stretch="Fill"/>
         <Label x:Name="speedLabel" Content="Speed (Value: 0):" HorizontalAlignment="Left" Height="41" Margin="63,384,0,0" VerticalAlignment="Top" Width="235" FontSize="16"/>
         <Slider x:Name="speedSlider" HorizontalAlignment="Left" Height="30" Margin="338,395,0,0" VerticalAlignment="Top" Width="421" Minimum="-0.5" Maximum="0.5" SmallChange="1"/>
-        <Button x:Name="saveButton" Content="Save Settings" HorizontalAlignment="Left" Margin="300,487,0,0" VerticalAlignment="Top" Width="200" Height="39" FontSize="20"/>
+        <Button x:Name="saveButton" Content="Save Settings" HorizontalAlignment="Left" Margin="300,555,0,0" VerticalAlignment="Top" Width="200" Height="39" FontSize="20"/>
         <Label x:Name="waveheightLabel" Content="Waveheight (Value: 2.1):" HorizontalAlignment="Left" Height="41" Margin="63,320,0,0" VerticalAlignment="Top" Width="235" FontSize="16"/>
         <Slider x:Name="waveheightSlider" Value="2.1" HorizontalAlignment="Left" Height="30" Margin="338,331,0,0" VerticalAlignment="Top" Width="421" Maximum="4.2" SmallChange="1"/>
         <Label x:Name="dropletNumberLabel" Content="Droplet Number (Value: 20):" HorizontalAlignment="Left" Height="41" Margin="63,255,0,0" VerticalAlignment="Top" Width="235" FontSize="16"/>
         <Slider x:Name="dropletNumberSlider" IsSnapToTickEnabled="True" Value="20" HorizontalAlignment="Left" Height="30" Margin="338,266,0,0" VerticalAlignment="Top" Width="421" Maximum="40" SmallChange="1" Cursor=""/>
+        <Label x:Name="resolutionLabel" Content="Resolution Ratio (Value: 1:1):" HorizontalAlignment="Left" Height="41" Margin="63,445,0,0" VerticalAlignment="Top" Width="235" FontSize="16"/>
+        <Slider x:Name="resolutionSlider" IsSnapToTickEnabled="True" Value="1" HorizontalAlignment="Left" Height="30" Margin="338,456,0,0" VerticalAlignment="Top" Width="421" Maximum="16" SmallChange="1" Cursor="" Minimum="1"/>
 
     </Grid>
 </Window>

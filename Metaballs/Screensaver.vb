@@ -30,6 +30,8 @@ Public Class Screensaver
     Private metaballsShader As Shader
     Private screenQuadRenderer As ScreenQuadRenderer
     Private dropletManager As DropletManager
+    Private offscreenRenderBuffer As OffscreenRenderBuffer
+    Private textureBlitShader As Shader
 
     Private screensaverPreviewMode As Boolean
 
@@ -80,9 +82,12 @@ Public Class Screensaver
 
         GL.ClearColor(0.0, 0.0, 0.0, 0.0)
 
-        metaballsShader = New Shader("metaballs.vert", "metaballs.frag")
+        metaballsShader = New Shader("ScreenQuadRenderer.vert", "metaballs.frag")
         screenQuadRenderer = New ScreenQuadRenderer()
         dropletManager = New DropletManager(ConfigManager.Instance.DropletNumber, New Vector3(0.0, 60.0, 40.0), 50.0, 60.0, 40.0, time)
+        offscreenRenderBuffer = New OffscreenRenderBuffer(Width * ConfigManager.Instance.ResolutionRatio,
+                                                          Height * ConfigManager.Instance.ResolutionRatio)
+        textureBlitShader = New Shader("ScreenQuadRenderer.vert", "BlitTextureToScreen.frag")
 
         mouseLocInitialized = False
     End Sub
@@ -124,7 +129,9 @@ Public Class Screensaver
 
         time += e.Time * ConfigManager.Instance.Speed
 
-        Dim resolution As Vector3 = New Vector3(Width, Height, 1.0)
+        ' Draw metaballs to offscreen buffer
+        Dim resolution As Vector3 = New Vector3(Width * ConfigManager.Instance.ResolutionRatio,
+                                                Height * ConfigManager.Instance.ResolutionRatio, 1.0)
         metaballsShader.Use()
 
         metaballsShader.SetVec3("iResolution", resolution)
@@ -134,6 +141,17 @@ Public Class Screensaver
 
         dropletManager.ApplyGravity(time, ConfigManager.Instance.WaveHeight)
         dropletManager.SendDataToShader(metaballsShader)
+
+        offscreenRenderBuffer.Bind()
+        screenQuadRenderer.Render()
+        offscreenRenderBuffer.UnBind()
+
+        ' Draw the scaled offscreen buffer to the screen
+        ' This is done so that the resolution of the screensaver may be adjusted
+        textureBlitShader.Use()
+        textureBlitShader.SetInt("textureToDraw", 0)
+        GL.ActiveTexture(TextureUnit.Texture0)
+        GL.BindTexture(TextureTarget.Texture2D, offscreenRenderBuffer.currentFrame)
 
         screenQuadRenderer.Render()
 

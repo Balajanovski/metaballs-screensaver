@@ -122,8 +122,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Program.vb" />
+    <Compile Include="OffscreenRenderBuffer.vb" />
     <Compile Include="ScreenQuadRenderer.vb" />
     <Compile Include="Screensaver.vb" />
+    <Compile Include="Util\FrameBufferComponentBase.vb" />
     <Compile Include="Util\RandomFloatGenerator.vb" />
     <Compile Include="Util\Shader.vb" />
     <Compile Include="Util\ShaderBase.vb" />
@@ -148,9 +150,10 @@
     </None>
     <None Include="App.config" />
     <EmbeddedResource Include="Shaders\metaballs.frag" />
-    <EmbeddedResource Include="Shaders\metaballs.vert" />
+    <EmbeddedResource Include="Shaders\ScreenQuadRenderer.vert" />
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
+    <EmbeddedResource Include="Shaders\BlitTextureToScreen.frag" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="ConfigurationWindow.xaml">
